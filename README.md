@@ -395,7 +395,6 @@ docker push seu-registry/eventos-backend:1.0
 
 ## 📚 Documentação Adicional
 
-- [DOCUMENTACAO.md](./DOCUMENTACAO.md) - Guia detalhado para iniciantes
 - [Swagger/OpenAPI](http://localhost:8080/swagger-ui.html) - Documentação interativa da API
 - [Spring Boot Docs](https://spring.io/projects/spring-boot)
 - [Angular Docs](https://angular.io/docs)
@@ -417,14 +416,6 @@ docker push seu-registry/eventos-backend:1.0
 # Frontend com debug
 ng serve --poll=2000
 ```
-
----
-
-## 📄 Licença
-
-Projeto desenvolvido como desafio técnico. [Adicione licença apropriada]
-
----
 
 ## ✨ Contribuidores
 

@@ -67,12 +67,7 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
+		
 		<!-- Spring Boot starter test for MockMvc and test utilities -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

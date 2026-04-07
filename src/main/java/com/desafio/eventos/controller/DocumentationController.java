@@ -1,0 +1,56 @@
+package com.desafio.eventos.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * Controller que fornece acesso à documentação da API.
+ */
+@Controller
+@RequestMapping("/docs")
+public class DocumentationController {
+
+    @GetMapping
+    @ResponseBody
+    public String docs() {
+        return """
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Eventos API - Documentação</title>
+                    <meta charset="utf-8"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css">
+                    <style>
+                        html { box-sizing: border-box; overflow: -moz-scrollbars-vertical; overflow-y: scroll; }
+                        *, *:before, *:after { box-sizing: inherit; }
+                        body { margin:0; padding:0; }
+                    </style>
+                </head>
+                <body>
+                    <div id="swagger-ui"></div>
+                    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+                    <script>
+                        SwaggerUIBundle({
+                            url: "/v3/api-docs",
+                            dom_id: '#swagger-ui',
+                            presets: [
+                                SwaggerUIBundle.presets.apis,
+                                SwaggerUIBundle.SwaggerUIStandalonePreset
+                            ],
+                            layout: "BaseLayout"
+                        });
+                    </script>
+                </body>
+                </html>
+                """;
+    }
+
+    @GetMapping("/api")
+    public String apiDocs() {
+        return "redirect:/v3/api-docs";
+    }
+}
+

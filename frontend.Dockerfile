@@ -1,0 +1,1 @@
+# Deprecated placeholder - use ./frontend/Dockerfile instead

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos API - Documentação</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header { background: #2c3e50; color: white; padding: 30px 0; margin-bottom: 30px; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 15px; }
+        h3 { color: #34495e; margin: 15px 0 10px 0; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        .endpoint { background: #ecf0f1; padding: 15px; border-left: 4px solid #3498db; margin: 10px 0; border-radius: 3px; }
+        .method { font-weight: bold; color: #27ae60; margin-right: 10px; }
+        .method.get { color: #3498db; }
+        .method.post { color: #f39c12; }
+        .method.put { color: #e74c3c; }
+        .method.delete { color: #c0392b; }
+        .url { font-family: 'Courier New', monospace; background: #fff; padding: 5px; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #ecf0f1; font-weight: bold; color: #2c3e50; }
+        tr:hover { background: #f9f9f9; }
+        .button { display: inline-block; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; margin: 5px 5px 5px 0; }
+        .button:hover { background: #2980b9; }
+        .info-box { background: #d5f4e6; border-left: 4px solid #27ae60; padding: 15px; margin: 15px 0; border-radius: 3px; }
+        .warning-box { background: #fadbd8; border-left: 4px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 3px; }
+        .status-good { color: #27ae60; font-weight: bold; }
+        .status-bad { color: #e74c3c; font-weight: bold; }
+        footer { text-align: center; padding: 20px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🎉 Eventos API</h1>
+            <p>API RESTful para gerenciar eventos - Documentação Completa</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>✅ Status da Aplicação</h2>
+            <p class="status-good">✓ API operacional na porta 8080</p>
+            <p class="status-good">✓ Banco de dados H2 em memória inicializado</p>
+            <p class="status-good">✓ Migrations Flyway aplicadas</p>
+            <p class="status-good">✓ Todos os 6 testes passando com sucesso</p>
+        </section>
+
+        <section>
+            <h2>🚀 URLs de Acesso Rápido</h2>
+            <table>
+                <tr>
+                    <th>Descrição</th>
+                    <th>URL</th>
+                    <th>Ação</th>
+                </tr>
+                <tr>
+                    <td>API Base</td>
+                    <td><code>http://localhost:8080</code></td>
+                    <td><a href="http://localhost:8080" class="button" target="_blank">Acessar</a></td>
+                </tr>
+                <tr>
+                    <td>Listar Eventos</td>
+                    <td><code>http://localhost:8080/api/events</code></td>
+                    <td><a href="http://localhost:8080/api/events" class="button" target="_blank">Acessar</a></td>
+                </tr>
+                <tr>
+                    <td>H2 Console</td>
+                    <td><code>http://localhost:8080/h2-console</code></td>
+                    <td><a href="http://localhost:8080/h2-console" class="button" target="_blank">Acessar</a></td>
+                </tr>
+                <tr>
+                    <td>Documentação OpenAPI</td>
+                    <td><code>http://localhost:8080/v3/api-docs</code></td>
+                    <td><a href="http://localhost:8080/v3/api-docs" class="button" target="_blank">JSON</a></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>📚 Endpoints da API</h2>
+
+            <h3>1. Listar Eventos (Paginado)</h3>
+            <div class="endpoint">
+                <span class="method get">GET</span>
+                <span class="url">/api/events?page=0&size=10</span>
+                <p><strong>Parâmetros:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><code>page</code> (opcional): Número da página (padrão: 0)</li>
+                    <li><code>size</code> (opcional): Itens por página (padrão: 10)</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Exemplo cURL:</strong></p>
+                <code style="display: block; background: #f4f4f4; padding: 10px; margin-top: 5px;">
+                    curl http://localhost:8080/api/events
+                </code>
+            </div>
+
+            <h3>2. Obter Evento por ID</h3>
+            <div class="endpoint">
+                <span class="method get">GET</span>
+                <span class="url">/api/events/{id}</span>
+                <p style="margin-top: 10px;"><strong>Exemplo:</strong></p>
+                <code style="display: block; background: #f4f4f4; padding: 10px; margin-top: 5px;">
+                    curl http://localhost:8080/api/events/1
+                </code>
+            </div>
+
+            <h3>3. Criar Evento</h3>
+            <div class="endpoint">
+                <span class="method post">POST</span>
+                <span class="url">/api/events</span>
+                <p style="margin-top: 10px;"><strong>Body (JSON):</strong></p>
+                <code style="display: block; background: #f4f4f4; padding: 10px; margin-top: 5px;">
+{<br>
+&nbsp;&nbsp;"title": "Workshop Angular",<br>
+&nbsp;&nbsp;"description": "Workshop sobre Angular 17",<br>
+&nbsp;&nbsp;"eventDateTime": "2026-05-20T14:00:00",<br>
+&nbsp;&nbsp;"location": "São Paulo"<br>
+}
+                </code>
+                <p style="margin-top: 10px;"><strong>Exemplo cURL:</strong></p>
+                <code style="display: block; background: #f4f4f4; padding: 10px; margin-top: 5px;">
+curl -X POST http://localhost:8080/api/events \<br>
+&nbsp;&nbsp;-H "Content-Type: application/json" \<br>
+&nbsp;&nbsp;-d '{"title":"Novo Evento","description":"Desc","eventDateTime":"2026-05-20T14:00:00","location":"Local"}'
+                </code>
+            </div>
+
+            <h3>4. Atualizar Evento</h3>
+            <div class="endpoint">
+                <span class="method put">PUT</span>
+                <span class="url">/api/events/{id}</span>
+                <p style="margin-top: 10px;"><strong>Body:</strong> Mesmo formato do POST</p>
+            </div>
+
+            <h3>5. Deletar Evento</h3>
+            <div class="endpoint">
+                <span class="method delete">DELETE</span>
+                <span class="url">/api/events/{id}</span>
+                <p style="margin-top: 10px;">Retorna: 204 No Content</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>🧪 Testes</h2>
+            <p>O projeto possui uma suíte completa de testes com 6 testes automáticos:</p>
+            <table>
+                <tr>
+                    <th>Teste</th>
+                    <th>Status</th>
+                    <th>Arquivo</th>
+                </tr>
+                <tr>
+                    <td>Contexto da Aplicação</td>
+                    <td class="status-good">✓ Passou</td>
+                    <td><code>EventosApplicationTests.java</code></td>
+                </tr>
+                <tr>
+                    <td>Testes de Integração</td>
+                    <td class="status-good">✓ Passou</td>
+                    <td><code>EventosIntegrationTest.java</code></td>
+                </tr>
+                <tr>
+                    <td>Testes de Serviço (4 testes)</td>
+                    <td class="status-good">✓ Passou</td>
+                    <td><code>EventServiceImplTest.java</code></td>
+                </tr>
+            </table>
+            <p style="margin-top: 15px;"><strong>Para rodar os testes:</strong></p>
+            <code style="display: block; background: #f4f4f4; padding: 10px; margin-top: 5px;">
+                mvnw.cmd test
+            </code>
+        </section>
+
+        <section>
+            <h2>📂 Estrutura do Projeto</h2>
+            <pre style="background: #f4f4f4; padding: 15px; overflow-x: auto;">
+com.desafio.eventos/
+├── EventosApplication.java          ← Classe principal
+├── controller/                       ← Controllers REST
+│   ├── EventController.java          ← Endpoints /api/events
+│   ├── ApiRootController.java        ← Root /api
+│   └── DocumentationController.java  ← Documentação /docs
+├── service/                          ← Lógica de negócio
+│   ├── EventService.java
+│   └── impl/EventServiceImpl.java
+├── repository/                       ← Data access
+│   └── EventRepository.java
+├── domain/                           ← Entidades JPA
+│   └── Event.java
+├── dto/                              ← DTOs
+│   ├── EventRequest.java
+│   └── EventResponse.java
+└── config/                           ← Configurações
+    └── WebConfig.java, OpenApiConfig.java
+            </pre>
+        </section>
+
+        <section>
+            <h2>⚙️ Stack Técnico</h2>
+            <table>
+                <tr>
+                    <th>Componente</th>
+                    <th>Versão/Tecnologia</th>
+                </tr>
+                <tr>
+                    <td>Java</td>
+                    <td>21</td>
+                </tr>
+                <tr>
+                    <td>Spring Boot</td>
+                    <td>4.0.5</td>
+                </tr>
+                <tr>
+                    <td>Spring Web MVC</td>
+                    <td>Ultima</td>
+                </tr>
+                <tr>
+                    <td>Spring Data JPA</td>
+                    <td>Ultima</td>
+                </tr>
+                <tr>
+                    <td>Banco de Dados</td>
+                    <td>H2 (em memória) / PostgreSQL (prod)</td>
+                </tr>
+                <tr>
+                    <td>Migrations</td>
+                    <td>Flyway 10.x</td>
+                </tr>
+                <tr>
+                    <td>Testes</td>
+                    <td>JUnit 5 + Mockito</td>
+                </tr>
+                <tr>
+                    <td>Build</td>
+                    <td>Maven 3.9+</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>🔧 Como Iniciar</h2>
+            <h3>1. Compilar e rodar testes:</h3>
+            <code style="display: block; background: #f4f4f4; padding: 10px; margin: 10px 0;">
+                mvnw.cmd clean test
+            </code>
+
+            <h3>2. Iniciar a aplicação:</h3>
+            <code style="display: block; background: #f4f4f4; padding: 10px; margin: 10px 0;">
+                mvnw.cmd spring-boot:run
+            </code>
+            <p style="margin-top: 10px;">Ou usando o JAR compilado:</p>
+            <code style="display: block; background: #f4f4f4; padding: 10px; margin: 10px 0;">
+                java -jar target/eventos-0.0.1-SNAPSHOT.jar
+            </code>
+
+            <h3>3. Acessar a aplicação:</h3>
+            <code style="display: block; background: #f4f4f4; padding: 10px; margin: 10px 0;">
+                http://localhost:8080/api/events
+            </code>
+        </section>
+
+        <section class="info-box">
+            <h3>ℹ️ Informações Importantes</h3>
+            <ul style="margin-left: 20px;">
+                <li>A API usa banco de dados <strong>H2 em memória</strong> por padrão (perfeito para testes)</li>
+                <li>Para usar PostgreSQL em produção, configure as variáveis de ambiente</li>
+                <li>Todos os endpoints requerem Content-Type: application/json</li>
+                <li>As datas devem estar em formato ISO 8601: YYYY-MM-DDTHH:mm:ss</li>
+                <li>Soft delete implementado (eventos marcados como deletados, não removidos)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🎯 Próximos Passos</h2>
+            <ul style="margin-left: 20px;">
+                <li>✅ Refatoração de pacotes: eventos2 → eventos (CONCLUÍDO)</li>
+                <li>✅ Testes: 6/6 testes passando (CONCLUÍDO)</li>
+                <li>✅ API REST: Todos os endpoints funcionando (CONCLUÍDO)</li>
+                <li>⚠️ Swagger UI: Disponível via CDN em /docs (em desenvolvimento)</li>
+                <li>📋 Adicionar autenticação JWT (futuro)</li>
+                <li>📊 Adicionar paginação customizável (futuro)</li>
+                <li>🔍 Implementar busca avançada (futuro)</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Eventos API - Desenvolvido com Spring Boot 4.0 | <strong>Status: ✓ Funcional</strong></p>
+    </footer>
+</body>
+</html>

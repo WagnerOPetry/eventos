@@ -233,7 +233,6 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 | Spring Data JPA | - | ORM e acesso a dados |
 | PostgreSQL Driver | - | Conexão com PostgreSQL |
 | Flyway | 10.0+ | Migrations de banco |
-| Lombok | - | Redução de boilerplate |
 | Jakarta Validation | - | Validação de dados |
 | Springdoc OpenAPI | 2.6.0 | Swagger/OpenAPI |
 | H2 Database | - | Testes em memória |
@@ -423,5 +422,5 @@ Wagner Petry
 
 ---
 
-**Última atualização**: 2024  
+**Última atualização**: Abr2026  
 **Versão**: 1.0.0-SNAPSHOT
